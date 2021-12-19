@@ -52,6 +52,24 @@ function checkLetter(btn){
 
 let letterCon = document.querySelectorAll('.letter');
 
+function refresh(){
+    startButton.addEventListener('click', (e) => {
+        for (let i = 0; i < 26; i++){
+            let toChange = document.getElementsByTagName('button')[i]
+            toChange.classList.remove('chosen');
+        }
+        let ul = document.querySelector('#phrase');
+        ul.innerHTML = '';
+        missed = 0;
+        for (let i = 0; i < 5; i++){
+            let tries = document.getElementsByClassName('tries')[i];
+            tries.style.display = '';
+        }
+        overlay.style.display = 'none';
+        startAgain();
+    })
+}
+
 qwerty.addEventListener('click', (e)=> {
     if(e.target.tagName === 'BUTTON' && e.target.className !== 'chosen'){
     let checking = checkLetter(e.target);
@@ -69,44 +87,14 @@ qwerty.addEventListener('click', (e)=> {
             startButton.className += 'win';
             document.querySelector('h2').innerHTML = "YOU HAVE WON";
             overlay.style.display = 'flex';
-
-            startButton.addEventListener('click', (e) => {
-                for (let i = 0; i < 26; i++){
-                    let toChange = document.getElementsByTagName('button')[i]
-                    toChange.classList.remove('chosen');
-                }
-                let ul = document.querySelector('#phrase');
-                ul.innerHTML = '';
-                missed = 0;
-                for (let i = 0; i < 5; i++){
-                    let tries = document.getElementsByClassName('tries')[i];
-                    tries.style.display = '';
-                }
-                overlay.style.display = 'none';
-                startAgain();
-            })
+            refresh();
         }
         
         if(missed > 4){
             startButton.className += 'lose';
             document.querySelector('h2').innerHTML = "YOU HAVE LOST";
             overlay.style.display = 'flex';
-
-            startButton.addEventListener('click', (e) => {
-                for (let i = 0; i < 26; i++){
-                    let toChange = document.getElementsByTagName('button')[i]
-                    toChange.classList.remove('chosen');
-                }
-                let ul = document.querySelector('#phrase');
-                ul.innerHTML = '';
-                missed = 0;
-                for (let i = 0; i < 5; i++){
-                    let tries = document.getElementsByClassName('tries')[i];
-                    tries.style.display = '';
-                }
-                overlay.style.display = 'none';
-                startAgain();
-            })
+            refresh();
         }
     }
 })
