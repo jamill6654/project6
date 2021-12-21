@@ -4,6 +4,7 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.querySelector('#overlay');
 let missed = 0;
 const phrases = ['no pain no gain', 'what doesnt kill you makes you stronger', 'one bird in the hand equals two in the bush', 'dont count your eggs before theyre hatched', 'you are what you eat'];
+let letterCon = ' ';
 
 //MAIN START SCREEN
 startButton.addEventListener('click', (e) => {
@@ -11,16 +12,14 @@ startButton.addEventListener('click', (e) => {
 })
 
 
-startAgain ();
-//MAIN FUNCTION
-function startAgain () {
+//RETURNS RANDOM PHRASE
 function getRandomPhraseAsArray(arr){
     let randPhrase = phrases[Math.floor(Math.random()*arr.length)];
     let charArr = randPhrase.split('');
     return charArr;
 }
 
-//ADDING RANDOM PHRASE TO SCREEN
+//ADDS RANDOM PHRASE TO SCREEN
 function addPhraseToDisplay(arr){
     let ul = document.querySelector('#phrase');
 
@@ -36,10 +35,7 @@ function addPhraseToDisplay(arr){
     }
 }
 
-const randphrases = getRandomPhraseAsArray(phrases);
-addPhraseToDisplay(randphrases);
-
-//CHECK IF LETTER MATCHES RETURNS LETTER OR NULL
+//CHECKS IF LETTER MATCHES RETURNS LETTER OR NULL
 function checkLetter(btn){
     let check = document.querySelectorAll('li');
     let match = null;
@@ -52,15 +48,12 @@ function checkLetter(btn){
     }
     return match;
 }
-//VAR TO HOLD PHRASE LENGTH
-let letterCon = document.querySelectorAll('.letter');
 
 //REFRESH FUNCTION FOR PLAYING AGAIN
 //CALLS STARTAGAIN TO START MAIN FUNCTION
 function refresh(){
     startButton.addEventListener('click', (e) => {
-        //TRYING TO REMOVE EVENT LISTENER AND FAILING
-        qwerty.removeEventListener('click', e);
+
         for (let i = 0; i < 26; i++){
             let toChange = document.getElementsByTagName('button')[i]
             toChange.classList.remove('chosen');
@@ -76,7 +69,15 @@ function refresh(){
 
         overlay.style.display = 'none';
         startAgain();
+
     })
+}
+
+startAgain();
+function startAgain(){
+const randphrases = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(randphrases);
+letterCon = document.querySelectorAll('.letter');
 }
 
 /*KEYBOARD EVENT LISTENER
@@ -113,4 +114,3 @@ qwerty.addEventListener('click', (e)=> {
         }
     }
 })
-}
