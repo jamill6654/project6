@@ -98,7 +98,6 @@ button {
   color: #000;
   background-color: #76CE82;
   transition:1s;
-  font-size:45px;
 }
 
 /* Keyboard */
@@ -149,6 +148,7 @@ button {
 
 .start a {
   color: var(--color-win);
+  cursor:pointer;
 }
 
 .win {
@@ -158,6 +158,7 @@ button {
 
 .win a {
   color: var(--color-win);
+  cursor: pointer;
 }
 
 .lose {
@@ -166,4 +167,5 @@ button {
 
 .lose a {
   color: var(--color-lose);
+  cursor: pointer;
 }

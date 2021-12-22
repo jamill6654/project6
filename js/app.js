@@ -42,7 +42,8 @@ function checkLetter(btn){
 
     for(let i = 0; i < check.length; i++){
         if (check[i].textContent === btn.textContent){
-            check[i].className = "show";
+            // check[i].className += "show";
+            check[i].classList.add('show');
             match = btn.textContent;
         }
     }
@@ -73,6 +74,7 @@ function refresh(){
     })
 }
 
+//CALLS ALL FUNCTIONS TO RUN PROGRAM
 startAgain();
 function startAgain(){
 const randphrases = getRandomPhraseAsArray(phrases);
